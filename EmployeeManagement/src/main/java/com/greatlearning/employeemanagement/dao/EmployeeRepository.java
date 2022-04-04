@@ -9,7 +9,6 @@ import java.util.List;
 
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
-    public final static String searchFirstName = "SELECT * FROM EMPLOYEE WHERE LOWER(FIRST_NAME) LIKE LOWER('%:firstName%')";
     @Query("SELECT e FROM Employee e WHERE LOWER(e.firstName) LIKE %:firstName%")
     List<Employee> findEmployeeByFirstName(@Param("firstName") String firstName);
 //    List<Employee> findByFirstNameContainingIgnoreCase(String firstName);

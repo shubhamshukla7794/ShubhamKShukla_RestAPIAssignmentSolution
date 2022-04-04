@@ -35,7 +35,7 @@ public class EmployeeRestController {
         return employee;
     }
 
-    @PutMapping("/employees/{employeeId}")
+    @PutMapping("/employees")
     public Employee updateEmployee(@RequestBody Employee employee) {
         employeeService.saveEmployee(employee);
         return employee;
@@ -47,18 +47,8 @@ public class EmployeeRestController {
         return "Employee details with id - " + employeeId + " deleted";
     }
 
-//    @GetMapping("/employees/search/{firstName}")
-//    public List<Employee> searchEmployeesByFirstName(@PathVariable String firstName) {
-//        return employeeService.searchEmployeeByFirstName(firstName);
-//    }
-
-//    @GetMapping("/employees/sort/{order}")
-//    public List<Employee> sortEmployeesInOrder(@PathVariable String order) {
-//        return employeeService.sortEmployeeByOrder(order);
-//    }
-
-    @GetMapping("/employees/search")
-    public List<Employee> searchEmployeesByFirstName(@RequestParam("firstName") String firstName) {
+    @GetMapping("/employees/search/{firstName}")
+    public List<Employee> searchEmployeesByFirstName(@PathVariable String firstName) {
         return employeeService.searchEmployeeByFirstName(firstName);
     }
 

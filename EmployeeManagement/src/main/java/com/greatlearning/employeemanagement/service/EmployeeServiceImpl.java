@@ -48,7 +48,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> searchEmployeeByFirstName(String firstName) {
-//        return employeeRepository.findByFirstNameContainingIgnoreCase(firstName);
         return employeeRepository.findEmployeeByFirstName(firstName.toLowerCase());
     }
 
