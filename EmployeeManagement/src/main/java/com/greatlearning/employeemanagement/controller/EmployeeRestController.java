@@ -1,10 +1,16 @@
 package com.greatlearning.employeemanagement.controller;
 
 import com.greatlearning.employeemanagement.entity.Employee;
+import com.greatlearning.employeemanagement.entity.Role;
+import com.greatlearning.employeemanagement.entity.User;
 import com.greatlearning.employeemanagement.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -18,8 +24,21 @@ public class EmployeeRestController {
         this.employeeService = employeeService;
     }
 
+    @GetMapping("/user")
+    public User saveUser(@RequestBody User user) {
+        return employeeService.saveUser(user);
+    }
+
+    @GetMapping("/role")
+    public Role saveRole(@RequestBody Role role) {
+        return employeeService.saveRole(role);
+    }
+
     @GetMapping("/employees")
     public List<Employee> findAllEmployees() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Collection<? extends GrantedAuthority> currentPrincipalName = authentication.getAuthorities();
+        System.out.println(currentPrincipalName);
         return employeeService.findAllEmployees();
     }
 

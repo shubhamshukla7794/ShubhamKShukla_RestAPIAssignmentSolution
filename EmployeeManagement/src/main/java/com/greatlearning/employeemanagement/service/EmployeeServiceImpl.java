@@ -1,8 +1,13 @@
 package com.greatlearning.employeemanagement.service;
 
 import com.greatlearning.employeemanagement.dao.EmployeeRepository;
+import com.greatlearning.employeemanagement.dao.RoleRepository;
+import com.greatlearning.employeemanagement.dao.UserRepository;
 import com.greatlearning.employeemanagement.entity.Employee;
+import com.greatlearning.employeemanagement.entity.Role;
+import com.greatlearning.employeemanagement.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,6 +17,15 @@ import java.util.Optional;
 public class EmployeeServiceImpl implements EmployeeService {
 
     private EmployeeRepository employeeRepository;
+
+    @Autowired
+    RoleRepository roleRepository;
+
+    @Autowired
+    UserRepository userRepository;
+
+    @Autowired
+    BCryptPasswordEncoder bCryptEncoder;
 
     @Autowired
     public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
@@ -64,5 +78,16 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new RuntimeException("No proper order mentioned");
         }
         return employees;
+    }
+
+    @Override
+    public User saveUser(User user) {
+        user.setPassword(bCryptEncoder.encode(user.getPassword()));
+        return userRepository.save(user);
+    }
+
+    @Override
+    public Role saveRole(Role role) {
+        return roleRepository.save(role);
     }
 }
