@@ -24,12 +24,12 @@ public class EmployeeRestController {
         this.employeeService = employeeService;
     }
 
-    @GetMapping("/user")
+    @PostMapping("/user")
     public User saveUser(@RequestBody User user) {
         return employeeService.saveUser(user);
     }
 
-    @GetMapping("/role")
+    @PostMapping("/role")
     public Role saveRole(@RequestBody Role role) {
         return employeeService.saveRole(role);
     }
