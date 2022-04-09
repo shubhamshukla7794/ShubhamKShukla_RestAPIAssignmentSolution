@@ -42,6 +42,10 @@ The script in [data.sql](https://github.com/shubhamshukla7794/ShubhamKShukla_Res
     > 
     > **Password** - `admin`
 
+## Issue Faced
+
+While implementing search funtionality there was an issue `java.lang.IllegalArgumentException: Parameter value [%dean%] did not match expected type [java.lang.Character (n/a)]`. I have explained the issue [here](https://github.com/shubhamshukla7794/ShubhamKShukla_RestAPIAssignmentSolution/issues/1) and how I resolved it.
+
 
 ##  Application
 
